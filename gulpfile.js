@@ -11,6 +11,7 @@ function gulpSassForSRC() {
 }
 gulp.task(gulpSassForSRC);
 
+//file for dist
 //sass compiler
 function gulpSass() {
     return gulp
@@ -21,8 +22,7 @@ function gulpSass() {
         .pipe(gulp.dest('dist/css'))         //send file or output file
 }
 gulp.task(gulpSass)                        //task create
-
-//html for production
+//html
 function gulphtml() {
     return gulp
         .src('./src/*.html')
@@ -30,4 +30,13 @@ function gulphtml() {
 }
 gulp.task(gulphtml);
 
-gulp.task('start', gulp.series(gulpSass, gulphtml, gulpSassForSRC))//task execute
+//browser stream
+function browserStream() {
+    return browserSync.init({
+            server: {
+                baseDir: './src'
+            }
+        })
+}
+gulp.task(browserStream);
+gulp.task('start', gulp.series(gulpSass, gulphtml, gulpSassForSRC, browserStream))//task execute
