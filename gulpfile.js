@@ -1,7 +1,17 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync');
-//Get file and compressed than compile sass
+
+//file for src
+function gulpSassForSRC() {
+    return gulp
+        .src('./src/sass/style.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./src/css'))
+}
+gulp.task(gulpSassForSRC);
+
+//sass compiler
 function gulpSass() {
     return gulp
         .src('./src/sass/style.scss')            //get file
@@ -12,4 +22,12 @@ function gulpSass() {
 }
 gulp.task(gulpSass)                        //task create
 
-gulp.task('start', gulp.series(gulpSass))//task execute
+//html for production
+function gulphtml() {
+    return gulp
+        .src('./src/*.html')
+        .pipe(gulp.dest('./dist'));
+}
+gulp.task(gulphtml);
+
+gulp.task('start', gulp.series(gulpSass, gulphtml, gulpSassForSRC))//task execute
