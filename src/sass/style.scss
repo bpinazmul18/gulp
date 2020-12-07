@@ -1,10 +1,10 @@
 $primary: #ddff00;
-$secondary: black;
+$secondary: #fff;
 $font-size: 60px;
 $heading: green;
 
 body {
-  background: $primary;
+  background: $heading;
   h1 {
     font-size: 60px;
     color: $secondary;
