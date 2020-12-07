@@ -1,0 +1,14 @@
+$primay: #ddff00;
+$secondary: #ffdd00;
+$font-size: 60px;
+$heading: green;
+
+body {
+  background: $primay;
+  h1 {
+    font-size: 60px;
+    color: $secondary;
+    font-weight: 400;
+    background: $heading;
+  }
+}
